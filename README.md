@@ -1,4 +1,4 @@
-# Vue Weather App made by Donald 1597 https://github.com/Donald1597
+# Vue Weather App
 
 ## Description
 
