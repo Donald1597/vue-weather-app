@@ -41,17 +41,17 @@
                 ></div>
               </div>
               <i
-                class="fa-solid fa-sun absolute left-2 top-1 text-yellow-400 dark:text-yellow-300 text-lg transition-opacity duration-300"
+                class="fa-solid fa-sun absolute right-2 top-1 text-yellow-400 dark:text-yellow-300 text-lg transition-opacity duration-300"
                 :class="{
-                  'opacity-100': !darkModeStore.isDarkMode,
-                  'opacity-0': darkModeStore.isDarkMode,
+                  'opacity-100': darkModeStore.isDarkMode,
+                  'opacity-0': !darkModeStore.isDarkMode,
                 }"
               ></i>
               <i
-                class="fa-solid fa-moon absolute right-2 top-1 text-gray-600 dark:text-gray-300 text-lg transition-opacity duration-300"
+                class="fa-solid fa-moon absolute left-2 top-1 text-gray-600 dark:text-gray-300 text-lg transition-opacity duration-300"
                 :class="{
-                  'opacity-0': !darkModeStore.isDarkMode,
-                  'opacity-100': darkModeStore.isDarkMode,
+                  'opacity-0': darkModeStore.isDarkMode,
+                  'opacity-100': !darkModeStore.isDarkMode,
                 }"
               ></i>
             </div>
