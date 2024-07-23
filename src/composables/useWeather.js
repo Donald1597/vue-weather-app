@@ -4,7 +4,11 @@ import { DateTime } from "luxon";
 import { useDarkModeStore } from "@/store/darkMode";
 
 export function useWeather() {
-  const apikey = ref(import.meta.env.VITE_WEATHER_API_KEY);
+  const apikey = ref(
+    process.env.NODE_ENV === "production"
+      ? "897c447a385c8c1819dd66b192902cfc"
+      : import.meta.env.VITE_WEATHER_API_KEY
+  );
   const weatherData = ref(null);
   const hourlyForecast = ref([]);
   const dailyForecast = ref([]);
@@ -18,7 +22,7 @@ export function useWeather() {
 
   const iconUrl = computed(() =>
     weatherData.value
-      ? `http://api.openweathermap.org/img/w/${weatherData.value.weather[0].icon}.png`
+      ? `https://api.openweathermap.org/img/w/${weatherData.value.weather[0].icon}.png`
       : null
   );
 
@@ -38,7 +42,7 @@ export function useWeather() {
   };
 
   const fetchForecast = async (city) => {
-    const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apikey.value}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apikey.value}`;
     try {
       const { data } = await axios.get(url);
       updateForecasts(data);
@@ -87,7 +91,7 @@ export function useWeather() {
 
   const searchByCity = async (cityName) => {
     if (!cityName) return;
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apikey.value}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apikey.value}`;
     await fetchWeatherData(url);
   };
 
@@ -97,7 +101,7 @@ export function useWeather() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords;
-        const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey.value}`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey.value}`;
         await fetchWeatherData(url);
       });
     }
