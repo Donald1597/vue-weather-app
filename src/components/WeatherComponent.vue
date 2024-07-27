@@ -5,7 +5,7 @@
   >
     <HeaderComponent @search-city="searchByCity" />
 
-    <main class="flex-grow text-center md:mt-32 mt-40">
+    <main class="flex-grow text-center md:mt-32 mt-52">
       <div v-if="error" class="text-red-500">
         {{ error }}
       </div>
